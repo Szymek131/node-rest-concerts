@@ -11,15 +11,6 @@ const OrderTicketForm = () => {
   const requests = useSelector(getRequests);
   console.log(requests);
 
-  useEffect(() => {
-    const refresh = setInterval(() => {
-      dispatch(loadSeatsRequest())
-    }, 120000);
-    return () => {
-      clearInterval(refresh);
-    };
-  }, [])
-
   const [order, setOrder] = useState({
     client: '',
     email: '',
