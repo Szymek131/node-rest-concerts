@@ -7,6 +7,7 @@ const db = require('./db');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/client/build')));
+app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   req.io = io;
