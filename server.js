@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const socket = require('socket.io');
 const cors = require('cors');
-const db = require('./db');
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -14,16 +14,29 @@ app.use((req, res, next) => {
   next();
 });
 
-const testimonialsRoutes = require('./routes/testimonials.routes');
+// const testimonialsRoutes = require('./routes/testimonials.routes');
 const concertsRoutes = require('./routes/concerts.routes');
-const seatsRoutes = require('./routes/seats.routes');
+// const seatsRoutes = require('./routes/seats.routes');
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-app.use('/api', testimonialsRoutes); // add testimonials routes to server
+// app.use('/api', testimonialsRoutes); // add testimonials routes to server
 app.use('/api', concertsRoutes); // add concerts routes to server
-app.use('/api', seatsRoutes); // add seats routes to server
+// app.use('/api', seatsRoutes); // add seats routes to server
+
+mongoose.set('useCreateIndex', true)
+mongoose.connect('mongodb://localhost:27017/NewWaveDB', {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useUnifiedTopology: true
+});
+const db = mongoose.connection;
+
+db.once('open', () => {
+  console.log('Connected to the database');
+});
+db.on('error', err => console.log('Error ' + err))
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'));
