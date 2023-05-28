@@ -4,6 +4,7 @@ const socket = require('socket.io');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/client/build')));
@@ -25,10 +26,9 @@ app.use('/api', testimonialsRoutes); // add testimonials routes to server
 app.use('/api', concertsRoutes); // add concerts routes to server
 app.use('/api', seatsRoutes); // add seats routes to server
 
-mongoose.set('useCreateIndex', true)
-mongoose.connect('mongodb://localhost:27017/NewWaveDB', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
+
+mongoose.connect('mongodb+srv://Szymon:ie5NTdrUA5Bv9UwG@newwavedb.jnveixd.mongodb.net/NewWaveDb?retryWrites=true&w=majority', {
+  useNewUrlParser: false,
   useUnifiedTopology: true
 });
 const db = mongoose.connection;
