@@ -32,7 +32,7 @@ app.use('/api', seatsRoutes);
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
-if (NODE_ENV === 'production') dbUri = 'mongodb+srv://Szymon:ie5NTdrUA5Bv9UwG@newwavedb.jnveixd.mongodb.net/NewWaveDb?retryWrites=true&w=majority';
+if (NODE_ENV === 'production') dbUri = 'mongodb+srv://Szymon:${process.env.DB_PASS}@newwavedb.jnveixd.mongodb.net/NewWaveDb?retryWrites=true&w=majority';
 else if (NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDBtest';
 else dbUri = 'mongodb://localhost:27017/NewWaveDB';
 
