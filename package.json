@@ -8,7 +8,7 @@
     "helmet": "3.21.1",
     "mocha": "6.2.1",
     "mongo-sanitize": "1.0.1",
-    "mongodb": "^5.5.0",
+    "mongodb": "^5.8.0",
     "mongoose": "5.7.1",
     "nodemon": "^2.0.22",
     "onchange": "6.1.0",
